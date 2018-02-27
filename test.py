@@ -22,13 +22,12 @@ for i in range(len(test)):
         if key == 'StartTime' or key == 'EndTime':
             abc = tmp[i].firstChild.data[:10]+' '+tmp[i].firstChild.data[11:19]
             text = time.mktime(time.strptime(abc,"%Y-%m-%d %H:%M:%S"))
-        if key == 'Turns' or key == 'InGameRank':
-            text = int(text)
         if key == 'PlayerVictory':
             if text == 'true':
                 text = 1
             else:
                 text = 0
-        ws.write(i+1,test2.index(key),text)
-w.save('1234.xls')
+        ws.write(i+1,test2.index(key),int(text))
+filename = time.strftime("%Y-%m-%d %H-%M-%S", time.localtime())+'.xls'
+w.save(filename)
 print 'success'
